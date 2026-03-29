@@ -327,4 +327,28 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '1';
   });
 
+  /* ----------------------------------------
+     15. FAQ ACCORDION TOGGLE
+  ---------------------------------------- */
+  const faqItems = document.querySelectorAll('.faq__item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq__question');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('active');
+      
+      // Close all others
+      faqItems.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq__answer').style.maxHeight = null;
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('active');
+        const answer = item.querySelector('.faq__answer');
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+
 });
